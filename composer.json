@@ -1,0 +1,19 @@
+{
+    "name": "estii/api_marvel",
+    "description": "App para consumo de api de marvel, prueba tecnica",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/",
+            "Controllers\\": "Controllers/",
+            "Config\\": "app/config"
+        }
+    },
+    "authors": [
+        {
+            "name": "Mario A. Gasca",
+            "email": "web@mariogasca.com"
+        }
+    ],
+    "require": {}
+}
