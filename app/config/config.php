@@ -12,8 +12,8 @@ class Config{
 
     public function __construct(){
         $this->character = 'ts=1';
-        $this->hash = '&hash=a6896840e8d64df055035f4e46534f01';
-        $this->key = '&apikey=245501876b8883f3a32db83d042687d0';
+        $this->hash = '';
+        $this->key = '';
         $this->url = 'https://gateway.marvel.com:443/v1/public/';
     }
 
