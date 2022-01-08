@@ -1,18 +1,17 @@
 <?php
 namespace App\Core;
+use Exception;
 
 class App
 {
     protected $url;
     protected string $controller;
-    protected string $model;
     protected array $params;
 
     //Cada vez que se accede al objeto, construmos la URL a consumir
     public function __construct(){
-        $this->url = empty($_GET['sc']) ? "welcome" : $_GET['sc']; 
+        $this->url = empty($_GET['sc']) ? "collaborators" : $_GET['sc']; 
         $this->controller = '';
-        $this->model = '';
         $this->params = [];
     }
 
@@ -24,7 +23,7 @@ class App
         if(file_exists($fileController)){   
             $controllerName = "Controllers\\" . ucfirst($this->url[0]) . "\\" . $this->getController();
             $controller = new $controllerName();
-            $controller->loadModel($this->url[0]);
+
             $nparams = sizeof($this->getParams());
             if($nparams > 0){                
                 if($nparams > 1){
@@ -39,7 +38,7 @@ class App
         }else
         {
            $controller = new \Controllers\ManagerError\ManagerErrorController();
-           $controller->render('ManagerError');
+           $controller->run();
         }
     }
 
@@ -57,7 +56,6 @@ class App
         $this->url = explode("/", $this->url);
         
         $this->controller = ucfirst($this->url[0]) . "Controller";
-        $this->model = ucfirst($this->url[0]) . "Model";
 
         $nparams = sizeof($this->url);
         $params = [];

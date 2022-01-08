@@ -9,4 +9,10 @@ class ManagerErrorController extends BaseController{
         parent::__construct();
     }
 
+    public function run(){
+        $response['status'] = '404';
+        $response['message'] = 'Resource not found';
+
+        echo json_encode($response);
+    }
 }

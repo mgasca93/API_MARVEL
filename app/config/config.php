@@ -4,19 +4,44 @@ namespace App\Config;
 
 class Config{
 
-    public $pub_key;
-    public $pri_key;
-    public $url;
-
+    private $key;
+    private $hash;
+    private $url;
+    private $character;
+    private $segment;
 
     public function __construct(){
-        $this->pub_key = 'kjbakjbcsdkjdnkdhjsbfasdklhjas';
-        $this->pri_key = 'sahhsahbdajbfyrwbksjfd';
-        $this->url = 'https://marvel.api.com?';
+        $this->character = 'ts=1';
+        $this->hash = '&hash=a6896840e8d64df055035f4e46534f01';
+        $this->key = '&apikey=245501876b8883f3a32db83d042687d0';
+        $this->url = 'https://gateway.marvel.com:443/v1/public/';
+    }
+
+    public function getKey(){
+        return $this->key;
+    }
+
+    public function getCharacter(){
+        return $this->character;
+    }
+
+    public function getHash(){
+        return $this->hash;
     }
 
     public function getURL(){
-        return $this->url . $this->pri_key . $this->pub_key;
+        return $this->url;
     }
 
+    public function getSegment(){
+        return $this->segment;
+    }
+
+    public function setSegment(string $segment){
+        $this->segment = $segment;
+    }
+
+    public function getEndPoint(){
+        return $this->getURL() .  $this->getSegment() . $this->getCharacter() . $this->getKey() . $this->getHash();
+    }
 }

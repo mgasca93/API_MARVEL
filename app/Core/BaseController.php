@@ -2,7 +2,7 @@
 
 namespace App\Core;
 
-use App\Config\Config;
+
 class BaseController{
 
 
@@ -11,16 +11,18 @@ class BaseController{
 
     }
 
-    public function render(){
-        $config = new Config();
-        var_dump($config->getURL());
-    }
+    public function execute_curl(string $endpoint){
 
 
-    public final function redirect($controller){
-        $ruta = constant("URL") . $controller;
-        header("location: $ruta");    
-        die();
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $endpoint);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        $res = curl_exec($ch);
+        curl_close($ch);
+
+        return json_decode($res);
+
+
     }
 
 
