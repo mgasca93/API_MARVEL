@@ -2,8 +2,8 @@
 
 namespace Controllers\ManagerError;
 
-use App\Core\BaseController;
-class ManagerErrorController extends BaseController{
+use App\Core\Controller;
+class ManagerErrorController extends Controller{
 
     public function __construct(){
         parent::__construct();

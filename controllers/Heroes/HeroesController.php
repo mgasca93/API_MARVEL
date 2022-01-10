@@ -2,31 +2,51 @@
 
 namespace Controllers\Heroes;
 
-use App\Config\Config;
-use App\Core\BaseController;
+use App\Core\Controller;
+use App\Helpers\Format\FormaterURL;
 
-class HeroesController extends BaseController{
+class HeroesController extends Controller{
 
-    public function get(){
+    public $format = null;
 
+    public function __construct(){
+        parent::__construct();
+        $this->format = new FormaterURL;
+    }
 
-        $config = new Config();
-        $segment = "characters?";
-        $config->setSegment($segment);
+    public function run($data = []){
 
-        $endpoint = $config->getEndPoint();
-        $data = $this->execute_curl($endpoint);
+        $heros[0]['name']      = 'Iron Man';
+        $heros[0]['endpoint']  = $this->format->URL($this->config->getBaseURL() . 'creators/ironman');
 
-        $heros = [];
-        $hero = [];
-        $i = 0;
-        foreach($data->data->results as $heroe){
-            $hero[$i]['name'] = $heroe->name;
-            $hero[$i]['endpoint'] = 'http://api_marvel.test/?sc=creators/get/' . $heroe->id;
-            $i++;
-        }
-        $heros['heros'] = $hero;
-        echo json_encode($heros);
+        $heros[1]['name']      = 'Capitan America';
+        $heros[1]['endpoint']  = $this->format->URL($this->config->getBaseURL() . 'creators/capamerica');
+
+        $heros[2]['name']      = 'Black Widow';
+        $heros[2]['endpoint']  = $this->format->URL($this->config->getBaseURL() . 'creators/blackwidow');
+
+        $heros[3]['name']      = 'Hulk';
+        $heros[3]['endpoint']  = $this->format->URL($this->config->getBaseURL() . 'creators/hulk');
+
+        $heros[4]['name']      = 'Thor';
+        $heros[4]['endpoint']  = $this->format->URL($this->config->getBaseURL() . 'creators/thor');
+
+        $heros[5]['name']      = '3-D Man';
+        $heros[5]['endpoint']  = $this->format->URL($this->config->getBaseURL() . 'creators/_3D_man');
+
+        $heros[6]['name']      = 'A-Bomb';
+        $heros[6]['endpoint']  = $this->format->URL($this->config->getBaseURL() . 'creators/a_bomb');
+
+        $heros[7]['name']      = 'A.I.M';
+        $heros[7]['endpoint']  = $this->format->URL($this->config->getBaseURL() . 'creators/aim');
+
+        $heros[8]['name']      = 'Aaron Stack';
+        $heros[8]['endpoint']  = $this->format->URL($this->config->getBaseURL() . 'creators/Aaron_Stack');
+
+        $heros[9]['name']      = 'Abomination';
+        $heros[9]['endpoint']  = $this->format->URL($this->config->getBaseURL() . 'creators/Abomination');
+
+        $this->render($heros);
 
     }
 

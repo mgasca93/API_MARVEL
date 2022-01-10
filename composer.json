@@ -1,12 +1,11 @@
 {
-    "name": "estii/api_marvel",
-    "description": "App para consumo de api de marvel, prueba tecnica",
-    "license": "MIT",
+    "name": "estii/api",
+    "description": "Prueba tecnica para del consumo de API de Marvel.",
     "autoload": {
         "psr-4": {
             "App\\": "app/",
-            "Controllers\\": "Controllers/",
-            "Config\\": "app/config"
+            "Controllers\\": "controllers/",
+            "Config\\": "config/"
         }
     },
     "authors": [
