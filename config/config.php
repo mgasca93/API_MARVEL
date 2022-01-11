@@ -13,7 +13,7 @@ class Config{
 
     public function __construct(){
         $this->character = 'ts=1';
-        
+       
         $this->url = 'https://gateway.marvel.com:443/v1/public/';
         $this->baseURL = 'http://api.test/';
     }
